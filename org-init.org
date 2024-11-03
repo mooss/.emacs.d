@@ -51,3 +51,29 @@ Stop generating invading =.~undo-tree~= files:
 #+begin_src emacs-lisp
 (setq undo-tree-auto-save-history nil)
 #+end_src
+
+** Font
+
+#+begin_src emacs-lisp
+  (set-face-attribute 'default nil
+                      :family "Jetbrains Mono"
+                      :height 100
+                      :weight 'normal
+                      :width 'normal)
+#+end_src
+
+** Change window on french keyboard
+
+Cycles through windows.
+The lambda seems necessary because =ace-window= seems to highjack =other-window=.
+#+begin_src emacs-lisp
+(global-set-key (kbd "M-ù") (lambda ()(interactive) (other-window 1)))
+#+end_src
+(other-window)
+
+* Org
+** Show emphasis markers
+
+#+begin_src emacs-lisp
+(setq org-hide-emphasis-markers nil)
+#+end_src
