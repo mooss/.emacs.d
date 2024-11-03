@@ -1,0 +1,53 @@
+#+PROPERTY: header-args :results silent
+
+
+* Emacs primitives
+** Package management
+
+#+BEGIN_SRC emacs-lisp
+(require 'package)
+(setq package-archives
+	  '(("gnu-elpa" . "https://elpa.gnu.org/packages/")
+		("nongnu-elpa" . "https://elpa.nongnu.org/nongnu/")
+		("melpa" . "https://melpa.org/packages/")))
+#+END_SRC
+
+*** Use-package
+Bootstrapping use-package.
+
+#+BEGIN_SRC emacs-lisp
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+#+END_SRC
+
+
+** Save behaviour
+
+Stop polluting the folders with annoyings =*~= backups.
+#+BEGIN_SRC emacs-lisp
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+#+END_SRC
+
+* Interface
+
+** Undo tree
+
+#+BEGIN_SRC emacs-lisp
+(use-package undo-tree
+  :ensure t)
+(global-undo-tree-mode 1)
+;; make ctrl-z undo
+(global-set-key (kbd "C-z") 'undo)
+;; make ctrl-Z redo
+(defalias 'redo 'undo-tree-redo)
+(global-set-key (kbd "C-S-z") 'redo)
+;; also using C-M-Z for console
+(global-set-key (kbd "C-M-z") 'redo)
+#+END_SRC
+
+Stop generating invading =.~undo-tree~= files:
+#+begin_src emacs-lisp
+(setq undo-tree-auto-save-history nil)
+#+end_src

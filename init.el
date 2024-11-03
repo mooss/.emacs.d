@@ -156,5 +156,8 @@ Otherwise the startup will be very slow."
 (require 'init-elixir)
 (require 'init-web)
 
+;; Load personal conf (mooss).
+(org-babel-load-file (expand-file-name "~/.emacs.d/org-init.org"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init.el ends here
