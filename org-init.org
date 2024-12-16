@@ -1,6 +1,5 @@
 #+PROPERTY: header-args :results silent
 
-
 * Emacs primitives
 ** Package management
 
@@ -21,7 +20,6 @@ Bootstrapping use-package.
   (package-install 'use-package))
 #+END_SRC
 
-
 ** Save behaviour
 
 Stop polluting the folders with annoyings =*~= backups.
@@ -29,6 +27,23 @@ Stop polluting the folders with annoyings =*~= backups.
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
 #+END_SRC
+
+** Suppress endless warnings
+
+Emacs spams =‘:events-buffer-scrollback-size’ deprecated. Use ‘events-buffer-config’.= everytime a file is open.
+
+#+begin_src emacs-lisp
+ (setq warning-minimum-level :error)
+#+end_src
+
+** Autocompletion
+
+Attempt to disable annoying systematic autocompletion (does not seem to work).
+
+#+begin_src emacs-lisp
+(setq tab-always-indent t)
+#+end_src
+
 
 * Interface
 
@@ -71,9 +86,38 @@ The lambda seems necessary because =ace-window= seems to highjack =other-window=
 #+end_src
 (other-window)
 
+** Shortcuts
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "<f3>") 'revert-buffer)
+#+end_src
+
+
 * Org
-** Show emphasis markers
+** Remove unreadeable prettyfiers
 
 #+begin_src emacs-lisp
 (setq org-hide-emphasis-markers nil)
+#+end_src
+
+#+begin_src emacs-lisp
+(setq org-modern-table nil)
+#+end_src
+
+** Scratch
+
+Put the scratch buffer in org-mode by default.
+
+#+begin_src emacs-lisp
+(setq initial-major-mode 'org-mode)
+(setq initial-scratch-message "#+property: header-args :results output
+# This buffer is for text that is not saved, and for volatile org-mode snippets.
+# To create a file, visit it with C-x C-f and enter text in its buffer.
+")
+#+end_src
+
+** Disable code block indentation
+
+#+begin_src emacs-lisp
+(setq org-edit-src-content-indentation 0)
 #+end_src
