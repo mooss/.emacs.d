@@ -16,6 +16,14 @@
 (use-package diminish) ; Enables the :diminish option to not show minor modes in the status bar.
 #+end_src
 
+** Melpa
+
+#+begin_src emacs-lisp
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+#+end_src
+
+
 ** Basic UI customizations
 
 #+begin_src emacs-lisp
@@ -135,6 +143,20 @@ Disable autopairing of angle brackets in org mode.
               (progn
                 (modify-syntax-entry ?< ".")
                 (modify-syntax-entry ?> "."))))
+#+end_src
+
+
+* Navigation
+
+** Treemacs
+
+Provides a side panel that helps navigating through the project.
+
+#+begin_src emacs-lisp
+(use-package treemacs
+  :bind ("<f4>" . treemacs)
+  :custom (treemacs-is-never-other-window t)
+  :hook (treemacs-mode . treemacs-project-follow-mode))
 #+end_src
 
 

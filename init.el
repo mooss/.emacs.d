@@ -8,7 +8,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(diminish magit modus-themes ob-go org-modern undo-tree yasnippet))
+   '(diminish magit modus-themes ob-go org-modern treemacs undo-tree
+	      yasnippet))
  '(package-vc-selected-packages '((ob-go :url "https://github.com/mooss/ob-go"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
