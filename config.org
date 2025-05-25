@@ -94,6 +94,38 @@
 (global-set-key (kbd "<f3>") 'revert-buffer)
 #+end_src
 
+** Modeline
+
+Doom modeline can display icons, which are provided by =all-the-icons=.
+#+begin_src emacs-lisp
+(use-package all-the-icons
+  :ensure t)
+;; (all-the-icons-install-fonts) ; Installs the required fonts locally.
+#+end_src
+
+
+#+begin_src emacs-lisp
+(use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode)
+  :config
+  (doom-modeline-mode 1)
+  (setq doom-modeline-major-mode-color-icon t)
+  (setq doom-modeline-minor-modes t))
+#+end_src
+
+Icons are disabled when using emacs-deamon.
+This forces the icons on when opening a new frame.
+From http://sodaware.sdf.org/notes/emacs-daemon-doom-modeline-icons/.
+
+#+begin_src emacs-lisp
+(defun enable-doom-modeline-icons (_frame)
+  (setq doom-modeline-icon t))
+
+(add-hook 'after-make-frame-functions
+          #'enable-doom-modeline-icons)
+#+end_src
+
 
 * Typing
 
@@ -230,7 +262,7 @@ Enable some languages:
 #+end_src
 
 Automatic evaluation:
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (setq my/babel-evaluate-without-asking
       '("bash"
         "dot"
