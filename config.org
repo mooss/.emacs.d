@@ -5,6 +5,14 @@
 #+property: header-args :results silent
 
 * Core setup
+** Melpa
+
+#+begin_src emacs-lisp
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+#+end_src
+
 ** =use-package=
 
 #+begin_src emacs-lisp
@@ -12,15 +20,8 @@
   (require 'use-package))
 (setq use-package-always-ensure t  ; Automatically install packages if missing
       use-package-always-defer nil ; Set to t for aggressive lazy-loading (can be overridden per package)
-      use-package-verbose t)       ; Show more info during package loading
+      use-package-verbose nil)     ; Show more info during package loading
 (use-package diminish) ; Enables the :diminish option to not show minor modes in the status bar.
-#+end_src
-
-** Melpa
-
-#+begin_src emacs-lisp
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 #+end_src
 
 
@@ -136,7 +137,6 @@ Visual undo/redo history and more standard undo/redo bindings.
 
 #+begin_src emacs-lisp
 (use-package undo-tree
-  :ensure t
   :diminish undo-tree-mode
   :config
   (global-undo-tree-mode 1)
@@ -148,7 +148,6 @@ Visual undo/redo history and more standard undo/redo bindings.
 
 #+begin_src emacs-lisp
 (use-package magit
-  :ensure t
   :defer t ; Will load when a magit command is called.
   :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch)
@@ -185,7 +184,7 @@ Don't evaluate when exporting:
 
 Golang support:
 #+begin_src emacs-lisp
-(use-package ob-go :vc (:url "https://github.com/mooss/ob-go"))
+(use-package ob-go)
 #+end_src
 
 Enable some languages:
