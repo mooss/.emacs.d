@@ -88,6 +88,12 @@
   :config (load-theme 'monokai t))
 #+end_src
 
+** Shortcuts
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "<f3>") 'revert-buffer)
+#+end_src
+
 
 * Typing
 
