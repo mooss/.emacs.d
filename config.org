@@ -122,6 +122,21 @@ Some org-mode snippets are defined in [[file:verbose.org]].
 (yas-global-mode 1)
 #+end_src
 
+** Autopair
+
+#+begin_src emacs-lisp
+(electric-pair-mode 1)
+#+end_src
+
+Disable autopairing of angle brackets in org mode.
+#+begin_src emacs-lisp
+(add-hook 'org-mode-hook
+          #'(lambda ()
+              (progn
+                (modify-syntax-entry ?< ".")
+                (modify-syntax-entry ?> "."))))
+#+end_src
+
 
 * Org-Mode
 
