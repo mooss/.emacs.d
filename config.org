@@ -1,6 +1,8 @@
 #+title: Emacs configuration
 #+author: Félix Jamet
+
 #+startup: overview
+#+property: header-args :results silent
 
 * Core setup
 ** =use-package=
@@ -106,6 +108,13 @@ Visual undo/redo history and more standard undo/redo bindings.
   :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch)
          ("C-c M-g" . magit-file-dispatch)))
+#+end_src
+
+
+* Org-Mode
+
+#+begin_src emacs-lisp
+(use-package org-modern)
 #+end_src
 
 
