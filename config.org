@@ -117,6 +117,82 @@ Visual undo/redo history and more standard undo/redo bindings.
 (use-package org-modern)
 #+end_src
 
+** Babel
+
+*** Behavior
+
+Disables irritating code block indentation.
+#+begin_src emacs-lisp
+(setq org-src-preserve-indentation t)
+#+end_src
+
+Opens source code window in current window.
+#+begin_src emacs-lisp
+(setq org-src-window-setup 'current-window)
+#+end_src
+
+Don't evaluate when exporting:
+#+begin_src emacs-lisp
+(setq org-export-use-babel nil)
+#+end_src
+
+*** Languages
+
+Golang support:
+#+begin_src emacs-lisp
+(use-package ob-go :vc (:url "https://github.com/mooss/ob-go"))
+#+end_src
+
+Enable some languages:
+#+begin_src emacs-lisp
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((dot . t)
+     (python . t)
+     (shell . t)
+     (ditaa . t)
+     (emacs-lisp . t)
+     (C . t);; regroups C, C++ and D
+     (R . t)
+     (gnuplot . t)
+     (ocaml . t)
+     (perl . t)
+     (scheme . nil)
+     (java . t)
+     (lua . t)
+     (js . t)
+     ;; (jupyter . t)
+     (go . t)))
+#+end_src
+
+Automatic evaluation:
+#+BEGIN_SRC emacs-lisp
+(setq my/babel-evaluate-without-asking
+      '("dot"
+        "python"
+        "ditaa"
+        "sh"
+        "bash"
+        "shell"
+        "emacs-lisp"
+        "R"
+        "cpp"
+        "gnuplot"
+        "ocaml"
+        "perl"
+        "scheme"
+        "js"
+        "jupyter-julia"
+        "lua"
+        "go"))
+
+(defun my-org-confirm-babel-evaluate (lang body)
+  (not (seq-contains my/babel-evaluate-without-asking
+                     lang
+                     'string=)))
+
+(setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
+#+end_src
 
 * Conclusion
 

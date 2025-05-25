@@ -7,7 +7,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages nil))
+ '(package-selected-packages
+   '(diminish magit modus-themes ob-go org-modern
+	      undo-tree))
+ '(package-vc-selected-packages '((ob-go :url "https://github.com/mooss/ob-go"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
