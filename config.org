@@ -82,24 +82,9 @@
 
 ** Theme
 
-=modus-vivendi= for dark, =modus-operandi= for light.
-
 #+begin_src emacs-lisp
-(use-package modus-themes
-  :ensure t
-  :init
-  ;; (setq modus-themes-italic-constructs t
-  ;;       modus-themes-bold-constructs nil
-  ;;       modus-themes-subtle-line-numbers t)
-  :config
-  (load-theme 'modus-operandi t))
-#+end_src
-
-Doom theme is another option:
-#+begin_src emacs-lisp
-;; (use-package doom-themes
-;;   :ensure t
-;;   :config (load-theme 'doom-one t))
+(use-package standard-themes
+  :config (load-theme 'standard-dark t))
 #+end_src
 
 
