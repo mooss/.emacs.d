@@ -10,9 +10,7 @@
  '(custom-safe-themes
    '("aa545934ce1b6fd16b4db2cf6c2ccf126249a66712786dd70f880806a187ac0b"
      default))
- '(package-selected-packages
-   '(diminish magit ob-go org-modern
-	      standard-themes treemacs undo-tree yasnippet))
+ '(package-selected-packages nil)
  '(package-vc-selected-packages '((ob-go :url "https://github.com/mooss/ob-go"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

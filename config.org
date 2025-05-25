@@ -84,8 +84,9 @@
 ** Theme
 
 #+begin_src emacs-lisp
-(use-package standard-themes
-  :config (load-theme 'standard-dark t))
+(use-package darkokai-theme
+  :config (load-theme 'darkokai t)
+  :init (setq darkokai-use-variable-pitch nil))
 #+end_src
 
 
