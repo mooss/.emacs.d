@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: org (-o) source block
+# key: <-o
+# --
+#+name: ${1:name}
+#+begin_src org
+$0
+#+end_src
+#+depends:$1

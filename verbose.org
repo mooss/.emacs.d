@@ -1,6 +1,5 @@
 #+title: Verbose configuration boilerplate
 #+author: Félix Jamet
-#+startup: overview
 
 * Org mode code blocks shortcuts (=<s TAB=)
 
@@ -19,7 +18,7 @@ $0
 Thanks to this comment: https://old.reddit.com/r/emacs/comments/ad68zk/get_easytemplates_back_in_orgmode_92/edh1mxt/.
 
 Language-specific expansions:
-#+BEGIN_SRC python :eval no-export :results output replace
+#+begin_src python :eval no-export :results output replace
 source_block_snippet_template = '''# -*- mode: snippet -*-
 # name: {} ({}) source block
 # key: <{}
@@ -62,21 +61,21 @@ for key, args in {
     'cpp': ['cpp :eval no-export :exports both', cpp_noweb_main],
     'p':    'python',
     'd':    'dot :cmdline -Kdot -Tsvg :file output.svg',
-    'pl':   'perl',
-    'jp':   'jupyter-python',
+    # 'pl':   'perl',
+    # 'jp':   'jupyter-python',
     'sh':   'bash',
     'el':   'emacs-lisp',
-    'sc':   'scheme',
-    'scrs': 'scheme :results silent',
-    'm':    'makefile',
+    # 'sc':   'scheme',
+    # 'scrs': 'scheme :results silent',
+    # 'm':    'makefile',
     't':    'text',
     'o':    'org',
-    'gl':   'glsl',
-    'lua':  'lua',
-    'x':    'xml',
-    'll':   'llvm',
+    # 'gl':   'glsl',
+    # 'lua':  'lua',
+    # 'x':    'xml',
+    # 'll':   'llvm',
     'js':   'js',
-    'jl':   'jupyter-julia',
+    # 'jl':   'jupyter-julia',
     'go':   'go',
     'md': 'markdown',
 }.items():
@@ -154,9 +153,9 @@ for key, args in {
         key, language
     )
     generate_inline_snippet(language, key, args, '$0', filename)
-#+END_SRC
+#+end_src
 
-#+RESULTS:
+#+results:
 #+begin_example
 [[file:snippets/org-mode/source-block-c++-cpp:generated]]
 [[file:snippets/org-mode/literate-source-block-c++-cpp:generated]]
@@ -165,36 +164,16 @@ for key, args in {
 [[file:snippets/org-mode/literate-source-block-p-python:generated]]
 [[file:snippets/org-mode/source-block-d-dot:generated]]
 [[file:snippets/org-mode/literate-source-block-d-dot:generated]]
-[[file:snippets/org-mode/source-block-pl-perl:generated]]
-[[file:snippets/org-mode/literate-source-block-pl-perl:generated]]
-[[file:snippets/org-mode/source-block-jp-jupyter-python:generated]]
-[[file:snippets/org-mode/literate-source-block-jp-jupyter-python:generated]]
 [[file:snippets/org-mode/source-block-sh-bash:generated]]
 [[file:snippets/org-mode/literate-source-block-sh-bash:generated]]
 [[file:snippets/org-mode/source-block-el-emacs-lisp:generated]]
 [[file:snippets/org-mode/literate-source-block-el-emacs-lisp:generated]]
-[[file:snippets/org-mode/source-block-sc-scheme:generated]]
-[[file:snippets/org-mode/literate-source-block-sc-scheme:generated]]
-[[file:snippets/org-mode/source-block-scrs-scheme:generated]]
-[[file:snippets/org-mode/literate-source-block-scrs-scheme:generated]]
-[[file:snippets/org-mode/source-block-m-makefile:generated]]
-[[file:snippets/org-mode/literate-source-block-m-makefile:generated]]
 [[file:snippets/org-mode/source-block-t-text:generated]]
 [[file:snippets/org-mode/literate-source-block-t-text:generated]]
 [[file:snippets/org-mode/source-block-o-org:generated]]
 [[file:snippets/org-mode/literate-source-block-o-org:generated]]
-[[file:snippets/org-mode/source-block-gl-glsl:generated]]
-[[file:snippets/org-mode/literate-source-block-gl-glsl:generated]]
-[[file:snippets/org-mode/source-block-lua-lua:generated]]
-[[file:snippets/org-mode/literate-source-block-lua-lua:generated]]
-[[file:snippets/org-mode/source-block-x-xml:generated]]
-[[file:snippets/org-mode/literate-source-block-x-xml:generated]]
-[[file:snippets/org-mode/source-block-ll-llvm:generated]]
-[[file:snippets/org-mode/literate-source-block-ll-llvm:generated]]
 [[file:snippets/org-mode/source-block-js-js:generated]]
 [[file:snippets/org-mode/literate-source-block-js-js:generated]]
-[[file:snippets/org-mode/source-block-jl-jupyter-julia:generated]]
-[[file:snippets/org-mode/literate-source-block-jl-jupyter-julia:generated]]
 [[file:snippets/org-mode/source-block-go-go:generated]]
 [[file:snippets/org-mode/literate-source-block-go-go:generated]]
 [[file:snippets/org-mode/source-block-md-markdown:generated]]
@@ -228,5 +207,5 @@ $0
     print(f'[[file:{destination}]]')
 #+end_src
 
-#+RESULTS:
+#+results:
 : [[file:snippets/org-mode/block-quote:generated]]
