@@ -84,9 +84,8 @@
 ** Theme
 
 #+begin_src emacs-lisp
-(use-package darkokai-theme
-  :config (load-theme 'darkokai t)
-  :init (setq darkokai-use-variable-pitch nil))
+(use-package monokai-theme
+  :config (load-theme 'monokai t))
 #+end_src
 
 
