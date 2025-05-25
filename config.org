@@ -24,6 +24,14 @@
 (use-package diminish) ; Enables the :diminish option to not show minor modes in the status bar.
 #+end_src
 
+** Sudo
+
+Use =M-x sudo-edit= to reopen the current file with sudo.
+
+#+BEGIN_SRC emacs-lisp
+(use-package sudo-edit :ensure t)
+#+END_SRC
+
 
 * User interface
 
@@ -92,6 +100,7 @@
 
 #+begin_src emacs-lisp
 (global-set-key (kbd "<f3>") 'revert-buffer)
+(global-set-key (kbd "M-o") 'other-window)
 #+end_src
 
 ** Modeline
