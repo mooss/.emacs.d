@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: cpp (cpz) source block
+# key: <cpz
+# --
+#+begin_src cpp :eval no-export :flags -Wall -std=c++17 :noweb no-export
+int main() {
+    $0
+}
+#+end_src

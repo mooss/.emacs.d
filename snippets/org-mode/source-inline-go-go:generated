@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: go (go) source block
+# key: >go
+# --
+src_go[]{$0}

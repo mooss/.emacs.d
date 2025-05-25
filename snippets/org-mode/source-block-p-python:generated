@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: python (p) source block
+# key: <p
+# --
+#+begin_src python
+$0
+#+end_src

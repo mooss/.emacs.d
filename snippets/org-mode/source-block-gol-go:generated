@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: go (gol) source block
+# key: <gol
+# --
+#+begin_src go :results output :eval no-export
+package main
+
+//<<include(":noweb $0 :go fmt")>>
+
+func main() {
+	fmt.Println("")
+}
+#+end_src

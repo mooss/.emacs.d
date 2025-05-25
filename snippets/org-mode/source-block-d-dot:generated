@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: dot (d) source block
+# key: <d
+# --
+#+begin_src dot :cmdline -Kdot -Tsvg :file output.svg
+$0
+#+end_src

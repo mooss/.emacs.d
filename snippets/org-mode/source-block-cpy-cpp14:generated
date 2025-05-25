@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: cpp (cpy) source block
+# key: <cpy
+# --
+#+begin_src cpp :eval no-export :flags -Wall -std=c++14 :noweb no-export
+int main() {
+    $0
+}
+#+end_src

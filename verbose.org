@@ -1,0 +1,232 @@
+#+title: Verbose configuration boilerplate
+#+author: Félix Jamet
+#+startup: overview
+
+* Org mode code blocks shortcuts (=<s TAB=)
+
+Org-mode 9.2 changed the template expansion mechanism, this is a way to restore it with Yasnippets.
+
+This snippet adds a substitute for the original template expansion mechanism for code blocks.
+#+begin_src snippet :tangle snippets/org-mode/source-block-completing:tangled
+# -*- mode: snippet -*-
+# name: source block
+# key: <s
+# --
+,#+begin_src ${1:$$(yas-auto-next (yas-completing-read "Language: " (mapcar 'car org-babel-load-languages))) }
+$0
+,#+end_src
+#+end_src
+Thanks to this comment: https://old.reddit.com/r/emacs/comments/ad68zk/get_easytemplates_back_in_orgmode_92/edh1mxt/.
+
+Language-specific expansions:
+#+BEGIN_SRC python :eval no-export :results output replace
+source_block_snippet_template = '''# -*- mode: snippet -*-
+# name: {} ({}) source block
+# key: <{}
+# --
+,#+begin_src {}
+{}
+,#+end_src
+'''
+
+literate_snippet_template = '''# -*- mode: snippet -*-
+# name: {} ({}) source block
+# key: <{}
+# --
+,#+name: ${{1:name}}
+,#+begin_src {}
+{}
+,#+end_src
+,#+depends:$1
+'''
+
+cpp_main = '''int main() {
+    $0
+}'''
+cpp_noweb_main = '''$0//<<include(":noweb print")>>
+
+int main() {
+    
+}''' # Inclusion is commented, otherwise this bugs out the closing paren of main.
+
+def generate_snippet(lang, key, args, inside, filename, template):
+    snippet = template.format(lang, key, key, args, inside)
+    dest = 'snippets/org-mode/' + filename
+    with open(dest, 'w') as content:
+        content.write(snippet)
+    print('[[file:{}]]'.format(dest))
+
+# Most languages follow the same patterns.
+for key, args in {
+    'c++':  'cpp',
+    'cpp': ['cpp :eval no-export :exports both', cpp_noweb_main],
+    'p':    'python',
+    'd':    'dot :cmdline -Kdot -Tsvg :file output.svg',
+    'pl':   'perl',
+    'jp':   'jupyter-python',
+    'sh':   'bash',
+    'el':   'emacs-lisp',
+    'sc':   'scheme',
+    'scrs': 'scheme :results silent',
+    'm':    'makefile',
+    't':    'text',
+    'o':    'org',
+    'gl':   'glsl',
+    'lua':  'lua',
+    'x':    'xml',
+    'll':   'llvm',
+    'js':   'js',
+    'jl':   'jupyter-julia',
+    'go':   'go',
+    'md': 'markdown',
+}.items():
+    if type(args) is list:
+        content = args[1]
+        args = args[0]
+        literate_content = None
+    else:
+        content = '$0'
+        literate_content = '$0'
+    language = args.split()[0]
+    filename = 'source-block-{}-{}:generated'.format(
+        key, language
+    )
+    generate_snippet(language, key, args, content, filename, source_block_snippet_template)
+    # Also generate an equivalent literate snippet:
+    if literate_content is not None:
+        generate_snippet(language, '-' + key, args, literate_content, 'literate-' + filename, literate_snippet_template)
+
+# C++ for evaluable code blocks.
+for key, std in {
+        'cpx': '11',
+        'cpy': '14',
+        'cpz': '17',
+        'cpa': '20'
+}.items():
+    filename = 'source-block-{}-cpp{}:generated'.format(key, std)
+    args = 'cpp :eval no-export :flags -Wall -std=c++{} :noweb no-export'.format(std)
+    generate_snippet('cpp', key, args, cpp_main, filename, source_block_snippet_template)
+
+# Go with main function and package.
+go_main = '''package main
+
+import(
+	"fmt"
+)
+
+func main() {
+	fmt.Println("$0")
+}'''
+generate_snippet('go', 'gom', 'go :results output', go_main, 'source-block-gom-go:generated', source_block_snippet_template)
+# Go with main function, package and noweb inclusion.
+go_literate = '''package main
+
+//<<include(":noweb $0 :go fmt")>>
+
+func main() {
+	fmt.Println("")
+}'''
+generate_snippet('go', 'gol', 'go :results output :eval no-export', go_literate, 'source-block-gol-go:generated', source_block_snippet_template)
+
+inline_snippet_template = """# -*- mode: snippet -*-
+# name: {} ({}) source block
+# key: >{}
+# --
+src_{}[{}]{{{}}}"""
+
+
+def generate_inline_snippet(lang, key, args, inside, filename):
+    snippet = inline_snippet_template.format(lang, key, key, lang, args, inside)
+    dest = 'snippets/org-mode/' + filename
+    with open(dest, 'w') as content:
+        content.write(snippet)
+    print('[[file:{}]]'.format(dest))
+
+for key, args in {
+    'cpp': 'cpp',
+    'go': 'go',
+}.items():
+    args = args.split(maxsplit=1)
+    language = args[0]
+    args = '' if len(args) == 1 else args[1]
+
+    filename = 'source-inline-{}-{}:generated'.format(
+        key, language
+    )
+    generate_inline_snippet(language, key, args, '$0', filename)
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+[[file:snippets/org-mode/source-block-c++-cpp:generated]]
+[[file:snippets/org-mode/literate-source-block-c++-cpp:generated]]
+[[file:snippets/org-mode/source-block-cpp-cpp:generated]]
+[[file:snippets/org-mode/source-block-p-python:generated]]
+[[file:snippets/org-mode/literate-source-block-p-python:generated]]
+[[file:snippets/org-mode/source-block-d-dot:generated]]
+[[file:snippets/org-mode/literate-source-block-d-dot:generated]]
+[[file:snippets/org-mode/source-block-pl-perl:generated]]
+[[file:snippets/org-mode/literate-source-block-pl-perl:generated]]
+[[file:snippets/org-mode/source-block-jp-jupyter-python:generated]]
+[[file:snippets/org-mode/literate-source-block-jp-jupyter-python:generated]]
+[[file:snippets/org-mode/source-block-sh-bash:generated]]
+[[file:snippets/org-mode/literate-source-block-sh-bash:generated]]
+[[file:snippets/org-mode/source-block-el-emacs-lisp:generated]]
+[[file:snippets/org-mode/literate-source-block-el-emacs-lisp:generated]]
+[[file:snippets/org-mode/source-block-sc-scheme:generated]]
+[[file:snippets/org-mode/literate-source-block-sc-scheme:generated]]
+[[file:snippets/org-mode/source-block-scrs-scheme:generated]]
+[[file:snippets/org-mode/literate-source-block-scrs-scheme:generated]]
+[[file:snippets/org-mode/source-block-m-makefile:generated]]
+[[file:snippets/org-mode/literate-source-block-m-makefile:generated]]
+[[file:snippets/org-mode/source-block-t-text:generated]]
+[[file:snippets/org-mode/literate-source-block-t-text:generated]]
+[[file:snippets/org-mode/source-block-o-org:generated]]
+[[file:snippets/org-mode/literate-source-block-o-org:generated]]
+[[file:snippets/org-mode/source-block-gl-glsl:generated]]
+[[file:snippets/org-mode/literate-source-block-gl-glsl:generated]]
+[[file:snippets/org-mode/source-block-lua-lua:generated]]
+[[file:snippets/org-mode/literate-source-block-lua-lua:generated]]
+[[file:snippets/org-mode/source-block-x-xml:generated]]
+[[file:snippets/org-mode/literate-source-block-x-xml:generated]]
+[[file:snippets/org-mode/source-block-ll-llvm:generated]]
+[[file:snippets/org-mode/literate-source-block-ll-llvm:generated]]
+[[file:snippets/org-mode/source-block-js-js:generated]]
+[[file:snippets/org-mode/literate-source-block-js-js:generated]]
+[[file:snippets/org-mode/source-block-jl-jupyter-julia:generated]]
+[[file:snippets/org-mode/literate-source-block-jl-jupyter-julia:generated]]
+[[file:snippets/org-mode/source-block-go-go:generated]]
+[[file:snippets/org-mode/literate-source-block-go-go:generated]]
+[[file:snippets/org-mode/source-block-md-markdown:generated]]
+[[file:snippets/org-mode/literate-source-block-md-markdown:generated]]
+[[file:snippets/org-mode/source-block-cpx-cpp11:generated]]
+[[file:snippets/org-mode/source-block-cpy-cpp14:generated]]
+[[file:snippets/org-mode/source-block-cpz-cpp17:generated]]
+[[file:snippets/org-mode/source-block-cpa-cpp20:generated]]
+[[file:snippets/org-mode/source-block-gom-go:generated]]
+[[file:snippets/org-mode/source-block-gol-go:generated]]
+[[file:snippets/org-mode/source-inline-cpp-cpp:generated]]
+[[file:snippets/org-mode/source-inline-go-go:generated]]
+#+end_example
+
+A similar snippet to generate non-source blocks:
+#+begin_src python :eval no-export :results output replace
+for block, shortcut in {
+    'quote': 'q'
+}.items():
+    destination = 'snippets/org-mode/block-{}:generated'.format(block)
+    snippet = """# -*- mode: snippet -*-
+# name: {} block
+# key: <{}
+# --
+,#+begin_{}
+$0
+,#+end_{}
+""".format(block, shortcut, block, block)
+    with open(destination, 'w') as content:
+        content.write(snippet)
+    print(f'[[file:{destination}]]')
+#+end_src
+
+#+RESULTS:
+: [[file:snippets/org-mode/block-quote:generated]]

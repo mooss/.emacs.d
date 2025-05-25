@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: cpp (cpp) source block
+# key: <cpp
+# --
+#+begin_src cpp :eval no-export :exports both
+$0//<<include(":noweb print")>>
+
+int main() {
+    
+}
+#+end_src

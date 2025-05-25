@@ -111,6 +111,18 @@ Visual undo/redo history and more standard undo/redo bindings.
 #+end_src
 
 
+* Typing
+
+** Yasnippet
+
+Some org-mode snippets are defined in [[file:verbose.org]].
+
+#+begin_src emacs-lisp
+(use-package yasnippet)
+(yas-global-mode 1)
+#+end_src
+
+
 * Org-Mode
 
 #+begin_src emacs-lisp
@@ -168,11 +180,11 @@ Enable some languages:
 Automatic evaluation:
 #+BEGIN_SRC emacs-lisp
 (setq my/babel-evaluate-without-asking
-      '("dot"
-        "python"
+      '("bash"
+        "dot"
         "ditaa"
+        "python"
         "sh"
-        "bash"
         "shell"
         "emacs-lisp"
         "R"
@@ -193,6 +205,7 @@ Automatic evaluation:
 
 (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
 #+end_src
+
 
 * Conclusion
 

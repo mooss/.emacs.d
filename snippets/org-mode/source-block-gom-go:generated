@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: go (gom) source block
+# key: <gom
+# --
+#+begin_src go :results output
+package main
+
+import(
+	"fmt"
+)
+
+func main() {
+	fmt.Println("$0")
+}
+#+end_src

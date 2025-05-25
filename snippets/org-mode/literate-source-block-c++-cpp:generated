@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: cpp (-c++) source block
+# key: <-c++
+# --
+#+name: ${1:name}
+#+begin_src cpp
+$0
+#+end_src
+#+depends:$1

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: cpp (cpx) source block
+# key: <cpx
+# --
+#+begin_src cpp :eval no-export :flags -Wall -std=c++11 :noweb no-export
+int main() {
+    $0
+}
+#+end_src
