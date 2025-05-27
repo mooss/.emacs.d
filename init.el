@@ -11,9 +11,10 @@
    '("aa545934ce1b6fd16b4db2cf6c2ccf126249a66712786dd70f880806a187ac0b"
      default))
  '(package-selected-packages
-   '(all-the-icons darkokai-theme diminish doom-modeline magit
-		   monokai-theme ob-go org-bullets treemacs undo-tree
-		   vertico yasnippet))
+   '(all-the-icons consult corfu darkokai-theme diminish doom-modeline
+		   magit marginalia monokai-theme ob-go orderless
+		   org-bullets sudo-edit treemacs undo-tree vertico
+		   yasnippet))
  '(package-vc-selected-packages '((ob-go :url "https://github.com/mooss/ob-go"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
