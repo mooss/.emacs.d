@@ -76,8 +76,8 @@ Use =M-x sudo-edit= to reopen the current file with sudo.
 (setq scroll-step 1                ; Scroll 1 line at a time.
       scroll-conservatively 10000) ; Keep cursor on screen.
 
-;; Show line numbers.
-(global-display-line-numbers-mode t)
+;; Hide line numbers.
+(setq line-number-mode nil)
 
 ;; Wrapping.
 (global-visual-line-mode t)
