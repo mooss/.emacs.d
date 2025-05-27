@@ -71,7 +71,6 @@ Use =M-x sudo-edit= to reopen the current file with sudo.
 ** Other UI customizations
 
 #+begin_src emacs-lisp
-
 ;; Better scrolling.
 (setq scroll-step 1                ; Scroll 1 line at a time.
       scroll-conservatively 10000) ; Keep cursor on screen.
@@ -87,6 +86,9 @@ Use =M-x sudo-edit= to reopen the current file with sudo.
 
 ;; More succint Yes/No prompts.
 (fset 'yes-or-no-p 'y-or-n-p)
+
+(use-package color-identifiers-mode)
+(add-hook 'after-init-hook 'global-color-identifiers-mode)
 #+end_src
 
 ** Theme
