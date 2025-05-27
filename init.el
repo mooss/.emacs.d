@@ -13,8 +13,8 @@
  '(package-selected-packages
    '(all-the-icons color-identifiers-mode consult corfu darkokai-theme
 		   diminish doom-modeline magit marginalia
-		   monokai-theme ob-go orderless org-bullets sudo-edit
-		   treemacs undo-tree vertico yasnippet))
+		   monokai-theme ob-go orderless org-bullets rg
+		   sudo-edit treemacs undo-tree vertico yasnippet))
  '(package-vc-selected-packages '((ob-go :url "https://github.com/mooss/ob-go"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
