@@ -28,9 +28,9 @@
 
 Use =M-x sudo-edit= to reopen the current file with sudo.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (use-package sudo-edit :ensure t)
-#+END_SRC
+#+end_src
 
 
 * User interface
@@ -187,6 +187,16 @@ Disable autopairing of angle brackets in org mode.
               (progn
                 (modify-syntax-entry ?< ".")
                 (modify-syntax-entry ?> "."))))
+#+end_src
+
+** Which key
+
+Lists shortcut completion when a shortcut is started.
+Helps a lot with discoverability and is very useful when trying to remember a complex sequence.
+
+#+begin_src emacs-lisp
+(use-package which-key
+  :config (which-key-mode))
 #+end_src
 
 
