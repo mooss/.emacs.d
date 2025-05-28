@@ -62,6 +62,9 @@ Use org-mode for the scratch buffer:
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
+
+;; No distracting blinking cursor.
+(blink-cursor-mode 0)
 #+end_src
 
 ** Fonts
@@ -184,6 +187,12 @@ From http://sodaware.sdf.org/notes/emacs-daemon-doom-modeline-icons/.
           #'enable-doom-modeline-icons)
 #+end_src
 
+** =helpful=
+
+#+begin_src emacs-lisp
+(use-package helpful)
+#+end_src
+
 
 * Typing
 
@@ -219,6 +228,19 @@ Helps a lot with discoverability and is very useful when trying to remember a co
 #+begin_src emacs-lisp
 (use-package which-key
   :config (which-key-mode))
+#+end_src
+
+
+* Development
+
+** Treesitter
+
+#+begin_src emacs-lisp
+(use-package treesit-auto
+  :custom (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
 #+end_src
 
 
@@ -523,6 +545,92 @@ Automatic evaluation:
                      'string=)))
 
 (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
+#+end_src
+
+
+* AI
+** LLMs
+*** OpenRouter API key
+
+Query the key with =pass= and keep it in memory:
+#+begin_src emacs-lisp
+(defvar eonwe-api-key nil "The API key for Eönwë.")
+
+(defun get-eonwe-api-key ()
+  (unless eonwe-api-key
+    (let ((key (string-trim (shell-command-to-string "pass ai/openrouter/eonwe"))))
+      (if (string= key "")
+          (error "Failed to retrieve the API key.")
+        (setq eonwe-api-key key))))
+  eonwe-api-key)
+#+end_src
+
+*** Gptel
+
+#+begin_src emacs-lisp
+(use-package gptel
+  :bind (("C-c C-<return>" . gptel-send)
+	 ("C-c C-g" . gptel-abort)))
+#+end_src
+
+**** Local with ollama
+
+#+begin_src emacs-lisp
+(gptel-make-ollama "Ollama"
+                 :host "localhost:11434"
+                 :stream nil
+                 :models '(deepseek-coder-v2:16b))
+#+end_src
+
+**** OpenRouter
+
+#+begin_src emacs-lisp
+(setq
+ gptel-model 'deepseek/deepseek-chat-v3-0324:nitro
+ gptel-backend (gptel-make-openai "OpenRouter"
+                 :host "openrouter.ai"
+                 :endpoint "/api/v1/chat/completions"
+                 :stream t
+                 :key 'get-eonwe-api-key
+                 :models '(anthropic/claude-sonnet-4
+                           deepseek/deepseek-r1:nitro
+			   deepseek/deepseek-chat-v3-0324:nitro
+			   google/gemini-2.5-pro-preview
+                           google/gemini-2.5-flash-preview-05-20)))
+#+end_src
+
+**** Custom prompts
+
+#+begin_src emacs-lisp
+(defun __gptel-test-writing ()
+  "Custom directive for writing tests."
+  (if (not (derived-mode-p 'prog-mode))
+      (error "This function only works in programming modes.")
+    (or (save-mark-and-excursion
+          (run-hook-with-args-until-success
+           'gptel-rewrite-directives-hook))
+        (let* ((lang (downcase (gptel--strip-mode-suffix major-mode)))
+               (article (if (and lang (not (string-empty-p lang))
+                                 (memq (aref lang 0) '(?a ?e ?i ?o ?u)))
+                            "an" "a")))
+          (format (concat "You are %s %s programmer.  "
+                          "Follow my instructions and write tests to the %s code I provide.\n"
+                          "- Generate ONLY %s code as output, without "
+                          "any explanation or markdown code fences.\n"
+                          "- Generate code in full, do not abbreviate or omit code.\n"
+                          "- Do not ask for further clarification, and make "
+                          "any assumptions you need to follow instructions.")
+                  article lang lang lang)))))
+
+(setq gptel-directives
+      (append gptel-directives
+              '((tests . __gptel-test-writing))))
+#+end_src
+
+#+begin_src emacs-lisp
+(setq gptel-directives
+      (append gptel-directives
+              '((tests . __gptel-test-writing))))
 #+end_src
 
 
