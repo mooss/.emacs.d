@@ -29,7 +29,7 @@
 Use =M-x sudo-edit= to reopen the current file with sudo.
 
 #+begin_src emacs-lisp
-(use-package sudo-edit :ensure t)
+(use-package sudo-edit)
 #+end_src
 
 ** Small tweaks
@@ -158,14 +158,13 @@ Rename opened file:
 Doom modeline can display icons, which are provided by =all-the-icons=.
 #+begin_src emacs-lisp
 (use-package all-the-icons
-  :ensure t)
+  :if (display-graphic-p))
 ;; (all-the-icons-install-fonts) ; Installs the required fonts locally.
 #+end_src
 
 
 #+begin_src emacs-lisp
 (use-package doom-modeline
-  :ensure t
   :hook (after-init . doom-modeline-mode)
   :config
   (doom-modeline-mode 1)
@@ -376,20 +375,6 @@ In-buffer completion (e.g. variable names).
 #+end_src
 
 
-* Navigation
-
-** Treemacs
-
-Provides a side panel that helps navigating through the project.
-
-#+begin_src emacs-lisp
-(use-package treemacs
-  :bind ("<f4>" . treemacs)
-  :custom (treemacs-is-never-other-window t)
-  :hook (treemacs-mode . treemacs-project-follow-mode))
-#+end_src
-
-
 * Flagship packages
 ** Undo-Tree
 
@@ -418,6 +403,17 @@ Consider this to stop generating =.~undo-tree~= files (remove if they are not ge
   :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch)
          ("C-c M-g" . magit-file-dispatch)))
+#+end_src
+
+** Treemacs
+
+Provides a side panel that helps navigating through the project.
+
+#+begin_src emacs-lisp
+(use-package treemacs
+  :bind ("<f4>" . treemacs)
+  :custom (treemacs-is-never-other-window t)
+  :hook (treemacs-mode . treemacs-project-follow-mode))
 #+end_src
 
 ** Smol but mighty
