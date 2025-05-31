@@ -80,11 +80,11 @@ Use org-mode for the scratch buffer:
 ;; Preffered fonts.
 (cond
  ((member "Fira Code" (font-family-list))
-  (set-face-attribute 'default nil :font "Fira Code" :height 120))
+  (set-face-attribute 'default nil :font "Fira Code" :height 100))
  ((member "JetBrains Mono" (font-family-list))
-  (set-face-attribute 'default nil :font "JetBrains Mono" :height 120))
+  (set-face-attribute 'default nil :font "JetBrains Mono" :height 100))
  ((member "Source Code Pro" (font-family-list))
-  (set-face-attribute 'default nil :font "Source Code Pro" :height 120))
+  (set-face-attribute 'default nil :font "Source Code Pro" :height 100))
  (t (message "Preferred fonts not found, using system default.")))
 #+end_src
 
@@ -233,14 +233,42 @@ Helps a lot with discoverability and is very useful when trying to remember a co
 
 * Development
 
-** Treesitter
+** TODO Treesitter
 
 #+begin_src emacs-lisp
-(use-package treesit-auto
-  :custom (treesit-auto-install 'prompt)
-  :config
-  (treesit-auto-add-to-auto-mode-alist 'all)
-  (global-treesit-auto-mode))
+;; (use-package tree-sitter
+;;   :config
+;;   (global-tree-sitter-mode)
+;;   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+#+end_src
+
+** Programming languages
+
+*** Go
+
+#+begin_src emacs-lisp
+(use-package go-mode
+  :hook (go-mode . eglot-ensure)
+  :bind ("C-c C-c" . gofmt))
+#+end_src
+
+*** JavaScript
+
+Installing the language server:
+#+begin_src bash :eval never
+pacman -S typescript-language-server
+#+end_src
+
+Enable eglot with =js-mode=.
+#+begin_src emacs-lisp
+(add-hook 'js-mode-hook 'eglot-ensure)
+#+end_src
+
+** Markup languages
+*** Markdown
+
+#+begin_src emacs-lisp
+(use-package markdown-mode)
 #+end_src
 
 
@@ -412,9 +440,9 @@ Visual undo/redo history and more standard undo/redo bindings.
   (global-set-key (kbd "C-M-z") 'redo))
 #+end_src
 
-Consider this to stop generating =.~undo-tree~= files (remove if they are not generated in the local directory):
+Stop generating =.~undo-tree~= files:
 #+begin_src emacs-lisp
-;(setq undo-tree-auto-save-history nil)
+(setq undo-tree-auto-save-history nil)
 #+end_src
 
 ** Magit
@@ -570,7 +598,9 @@ Query the key with =pass= and keep it in memory:
 #+begin_src emacs-lisp
 (use-package gptel
   :bind (("C-c C-<return>" . gptel-send)
-	 ("C-c C-g" . gptel-abort)))
+		 ("C-c C-g" . gptel-abort)
+		 ("C-c <return>" . gptel))
+  :config (setq gptel-default-mode 'org-mode))
 #+end_src
 
 **** Local with ollama
