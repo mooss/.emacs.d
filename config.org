@@ -245,6 +245,12 @@ Helps a lot with discoverability and is very useful when trying to remember a co
 ;;   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 #+end_src
 
+** Eglot
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-S-l r") 'eglot-rename)
+#+end_src
+
 ** Programming languages
 
 *** Go
