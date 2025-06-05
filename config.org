@@ -80,11 +80,11 @@ Use org-mode for the scratch buffer:
 ;; Preffered fonts.
 (cond
  ((member "Fira Code" (font-family-list))
-  (set-face-attribute 'default nil :font "Fira Code" :height 100))
+  (set-face-attribute 'default nil :font "Fira Code" :height 95))
  ((member "JetBrains Mono" (font-family-list))
-  (set-face-attribute 'default nil :font "JetBrains Mono" :height 100))
+  (set-face-attribute 'default nil :font "JetBrains Mono" :height 95))
  ((member "Source Code Pro" (font-family-list))
-  (set-face-attribute 'default nil :font "Source Code Pro" :height 100))
+  (set-face-attribute 'default nil :font "Source Code Pro" :height 95))
  (t (message "Preferred fonts not found, using system default.")))
 #+end_src
 
@@ -111,9 +111,11 @@ Use org-mode for the scratch buffer:
 (add-hook 'after-init-hook 'global-color-identifiers-mode)
 #+end_src
 
-Better compatibility with the heathens:
+
+Tabulation:
 #+begin_src emacs-lisp
-(setq-default tab-width 4)
+(setq-default indent-tabs-mode nil) ; Reject tabs, embrace glorious spaces.
+(setq-default tab-width 4)          ; Forgive the heathens.
 #+end_src
 
 ** Theme
