@@ -174,7 +174,8 @@ Doom modeline can display icons, which are provided by =all-the-icons=.
   :config
   (doom-modeline-mode 1)
   (setq doom-modeline-major-mode-color-icon t)
-  (setq doom-modeline-minor-modes t))
+  (setq doom-modeline-minor-modes t)
+  (setq column-number-mode t))
 #+end_src
 
 Icons are disabled when using emacs-deamon.
