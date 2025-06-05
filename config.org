@@ -286,6 +286,7 @@ Enable eglot with =js-mode=.
 ** Vertico
 
 Minibuffer completion.
+Use =M-RET= to bypass completion when saving/opening files to allow selection of a new file that is a prefix of an old file.
 
 #+begin_src emacs-lisp
 (use-package vertico
@@ -469,7 +470,7 @@ Provides a side panel that helps navigating through the project.
   :hook (treemacs-mode . treemacs-project-follow-mode))
 #+end_src
 
-** Smol but mighty
+** Other
 
 #+begin_src emacs-lisp
 (use-package rg)
