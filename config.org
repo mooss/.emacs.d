@@ -168,6 +168,7 @@ Doom modeline can display icons, which are provided by =all-the-icons=.
   :hook (after-init . doom-modeline-mode)
   :config
   (doom-modeline-mode 1)
+  (line-number-mode t)
   (setq doom-modeline-major-mode-color-icon t)
   (setq doom-modeline-minor-modes t)
   (setq column-number-mode t))
@@ -564,24 +565,24 @@ Golang support:
 
 Enable some languages:
 #+begin_src emacs-lisp
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((dot . t)
-     (python . t)
-     (shell . t)
-     (ditaa . t)
-     (emacs-lisp . t)
-     (C . t);; regroups C, C++ and D
-     (R . t)
-     (gnuplot . t)
-     (ocaml . t)
-     (perl . t)
-     (scheme . nil)
-     (java . t)
-     (lua . t)
-     (js . t)
-     ;; (jupyter . t)
-     (go . t)))
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((dot . t)
+   (python . t)
+   (shell . t)
+   (ditaa . t)
+   (emacs-lisp . t)
+   (C . t);; regroups C, C++ and D
+   (R . t)
+   (gnuplot . t)
+   (ocaml . t)
+   (perl . t)
+   (scheme . nil)
+   (java . t)
+   (lua . t)
+   (js . t)
+   ;; (jupyter . t)
+   (go . t)))
 #+end_src
 
 Automatic evaluation:
