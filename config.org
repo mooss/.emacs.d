@@ -77,15 +77,10 @@ Use org-mode for the scratch buffer:
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
-;; Preffered fonts.
-(cond
- ((member "Fira Code" (font-family-list))
-  (set-face-attribute 'default nil :font "Fira Code" :height 95))
- ((member "JetBrains Mono" (font-family-list))
-  (set-face-attribute 'default nil :font "JetBrains Mono" :height 95))
- ((member "Source Code Pro" (font-family-list))
-  (set-face-attribute 'default nil :font "Source Code Pro" :height 95))
- (t (message "Preferred fonts not found, using system default.")))
+(set-face-attribute 'default nil
+                    :family "JetBrains Mono"
+                    :height 95
+                    :weight 'normal)
 #+end_src
 
 ** Other UI customizations
