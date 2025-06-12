@@ -253,7 +253,13 @@ Helps a lot with discoverability and is very useful when trying to remember a co
 #+begin_src emacs-lisp
 (use-package go-mode
   :hook (go-mode . eglot-ensure)
-  :bind ("C-c C-c" . gofmt))
+  :config
+  (defun my/go-format-and-organize ()
+    "Format buffer and organize imports for Go."
+    (interactive)
+    (eglot-format-buffer)
+    (call-interactively #'eglot-code-action-organize-imports))
+  :bind ("C-c C-c" . #'my/go-format-and-organize))
 #+end_src
 
 *** JavaScript
