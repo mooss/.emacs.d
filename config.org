@@ -243,7 +243,34 @@ Helps a lot with discoverability and is very useful when trying to remember a co
 ** Eglot
 
 #+begin_src emacs-lisp
-(global-set-key (kbd "C-S-l r") 'eglot-rename)
+(global-set-key (kbd "C-S-l n") 'eglot-rename) ; Immediate, works locally.
+(global-set-key (kbd "C-S-l p") 'xref-find-references-and-replace) ; Interactive, works globally.
+#+end_src
+
+Jump to definition:
+#+begin_src emacs-lisp
+(defun my/jump-to-def (event)
+  "Jump to definition at the location of a mouse click."
+  (interactive "e")
+  (let ((pos (posn-point (event-start event))))
+    (goto-char pos)
+    (xref-find-definitions-at-mouse event)))
+
+(global-set-key (kbd "C-<mouse-1>") 'my/jump-to-def)
+(global-set-key (kbd "C-S-l d") 'xref-find-definitions)
+#+end_src
+
+Jump to references:
+#+begin_src emacs-lisp
+(defun my/jump-to-refs (event)
+  "Jump to references at the location of a mouse click."
+  (interactive "e")
+  (let ((pos (posn-point (event-start event))))
+    (goto-char pos)
+    (xref-find-references-at-mouse event)))
+
+(global-set-key (kbd "C-<mouse-3>") 'my/jump-to-refs)
+(global-set-key (kbd "C-S-l r") 'xref-find-references)
 #+end_src
 
 ** Programming languages
