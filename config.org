@@ -655,21 +655,22 @@ Query the key with =pass= and keep it in memory:
 
 #+begin_src emacs-lisp
 (setq
- gptel-model 'deepseek/deepseek-chat-v3-0324:nitro
+ gptel-model 'google/gemini-2.5-flash-preview-05-20
  gptel-backend (gptel-make-openai "OpenRouter"
                  :host "openrouter.ai"
                  :endpoint "/api/v1/chat/completions"
                  :stream t
                  :key 'get-eonwe-api-key
-                 :models '(anthropic/claude-sonnet-4:nitro ; 15o
-                           deepseek/deepseek-r1-0528:nitro ; 2.15o
-						   deepseek/deepseek-chat-v3-0324:nitro ; .88o
-						   google/gemini-2.5-pro-preview:nitro ; 10o
-                           google/gemini-2.5-flash-preview-05-20:nitro ; .6o
-                           openai/gpt-4.1-nano:nitro ; .4o
-                           openai/gpt-4o-mini:nitro ; .6o
-                           openai/gpt-4.1-mini:nitro ; 1.6o
-                           openai/o4-mini:nitro ; 4.4o
+                 :models '(google/gemini-2.5-flash-preview-05-20 ; .6o
+                           anthropic/claude-sonnet-4 ; 15o
+                           deepseek/deepseek-r1-0528 ; 2.15o
+						   deepseek/deepseek-chat-v3-0324 ; .88o
+						   google/gemini-2.5-pro-preview ; 10o
+                           google/gemini-2.5-flash-preview-05-20:thinking ; 3.5o
+                           openai/gpt-4.1-nano ; .4o
+                           openai/gpt-4o-mini ; .6o
+                           openai/gpt-4.1-mini ; 1.6o
+                           openai/o4-mini ; 4.4o
                            )))
 #+end_src
 
