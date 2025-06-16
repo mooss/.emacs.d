@@ -1,0 +1,6 @@
+# name: error boilerplate
+# key: !e
+# --
+if err != nil {
+	return $1err
+}
