@@ -511,10 +511,20 @@ Provides a side panel that helps navigating through the project.
   :hook (treemacs-mode . treemacs-project-follow-mode))
 #+end_src
 
-** Other
+
+* Misc
 
 #+begin_src emacs-lisp
 (use-package rg)
+#+end_src
+
+** Recent files
+
+#+begin_src emacs-lisp
+(require 'recentf)
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(global-set-key (kbd "C-x f") 'recentf)
 #+end_src
 
 
