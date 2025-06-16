@@ -302,11 +302,17 @@ Enable eglot with =js-mode=.
 (add-hook 'js-mode-hook 'eglot-ensure)
 #+end_src
 
-** Markup languages
+** Markup/data languages
 *** Markdown
 
 #+begin_src emacs-lisp
 (use-package markdown-mode)
+#+end_src
+
+*** YAML
+
+#+begin_src emacs-lisp
+(use-package yaml-mode)
 #+end_src
 
 
