@@ -257,6 +257,8 @@ Jump to definition:
     (goto-char pos)
     (xref-find-definitions-at-mouse event)))
 
+(global-unset-key (kbd "C-<mouse-1>"))
+(global-unset-key (kbd "C-<down-mouse-1>"))
 (global-set-key (kbd "C-<mouse-1>") 'my/jump-to-def)
 (global-set-key (kbd "C-S-l d") 'xref-find-definitions)
 #+end_src
@@ -270,6 +272,8 @@ Jump to references:
     (goto-char pos)
     (xref-find-references-at-mouse event)))
 
+(global-unset-key (kbd "C-<mouse-3>"))
+(global-unset-key (kbd "C-<down-mouse-3>"))
 (global-set-key (kbd "C-<mouse-3>") 'my/jump-to-refs)
 (global-set-key (kbd "C-S-l r") 'xref-find-references)
 #+end_src
