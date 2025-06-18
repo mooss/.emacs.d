@@ -453,6 +453,13 @@ In-buffer completion (e.g. variable names).
   (corfu-history-mode)
   (corfu-popupinfo-mode))
 
+;; Disable Corfu popup when moving cursor.
+(define-key corfu-map (kbd "C-f") 'forward-char)
+(define-key corfu-map (kbd "C-e") 'end-of-visual-line)
+(define-key corfu-map (kbd "C-a") 'beginning-of-visual-line)
+(define-key corfu-map (kbd "C-b") 'backward-char)
+;; Still use C-p and C-n for autocomplete selection.
+
 ;; A few more useful configurations...
 (use-package emacs
   :custom
