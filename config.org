@@ -509,6 +509,8 @@ Stop generating =.~undo-tree~= files:
   :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch)
          ("C-c M-g" . magit-file-dispatch)))
+
+(setq smerge-command-prefix (kbd "C-c C-b")) ;; More reasonable smerge prefix.
 #+end_src
 
 ** Treemacs
@@ -534,7 +536,7 @@ Provides a side panel that helps navigating through the project.
 #+begin_src emacs-lisp
 (require 'recentf)
 (recentf-mode 1)
-(setq recentf-max-menu-items 25)
+(setq recentf-max-menu-items 50)
 (global-set-key (kbd "C-x f") 'recentf)
 #+end_src
 
@@ -689,10 +691,10 @@ Query the key with =pass= and keep it in memory:
                  :stream t
                  :key 'get-eonwe-api-key
                  :models '(google/gemini-2.5-flash-preview-05-20 ; .6o
+                           anthropic/claude-opus-4 ; 75o
                            anthropic/claude-sonnet-4 ; 15o
                            deepseek/deepseek-r1-0528 ; 2.15o
 						   deepseek/deepseek-chat-v3-0324 ; .88o
-						   google/gemini-2.5-pro-preview ; 10o
                            google/gemini-2.5-flash-preview-05-20:thinking ; 3.5o
                            openai/gpt-4.1-nano ; .4o
                            openai/gpt-4o-mini ; .6o
