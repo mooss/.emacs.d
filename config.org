@@ -265,6 +265,15 @@ Package:
 (setq typescript-ts-mode-indent-offset 4)
 #+end_src
 
+Fix the terrible behavior of =forward-sexp= and =backward-sexp= (=C-M-f= and =C-M-b=):
+#+begin_src emacs-lisp
+(defun my/typescript-ts-restore-sexp ()
+  (setq-local forward-sexp-function nil)
+  (setq-local backward-sexp-function nil))
+
+(add-hook 'typescript-ts-mode-hook #'my/typescript-ts-restore-sexp)
+#+end_src
+
 ** Eglot
 
 #+begin_src emacs-lisp
