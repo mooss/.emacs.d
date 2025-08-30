@@ -14,9 +14,9 @@
    '(all-the-icons color-identifiers-mode consult corfu diminish
                    doom-modeline go-mode gptel helpful magit
                    marginalia markdown-mode monokai-theme ob-go
-                   orderless org-bullets persistent-scratch rg
-                   sudo-edit treemacs undo-tree vertico yaml yaml-mode
-                   yasnippet))
+                   ob-typescript orderless org-bullets
+                   persistent-scratch rg sudo-edit tree-sitter
+                   treemacs undo-tree vertico yaml-mode yasnippet))
  '(package-vc-selected-packages '((ob-go :url "https://github.com/mooss/ob-go"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

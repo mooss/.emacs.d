@@ -239,7 +239,7 @@ Language support:
 (setq treesit-language-source-alist
       '(
         (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "typescript/src")
-        ;; (bash "https://github.com/tree-sitter/tree-sitter-bash")
+        (bash "https://github.com/tree-sitter/tree-sitter-bash")
         ;; (cmake "https://github.com/uyha/tree-sitter-cmake")
         ;; (css "https://github.com/tree-sitter/tree-sitter-css")
         ;; (elisp "https://github.com/Wilfred/tree-sitter-elisp")
@@ -263,6 +263,7 @@ Package:
 (use-package tree-sitter
   :mode (("\\.ts\\'"  . typescript-ts-mode)))
 (setq typescript-ts-mode-indent-offset 4)
+(setq lsp-typescript-prefer-use-project-ts-server t)
 #+end_src
 
 Fix the terrible behavior of =forward-sexp= and =backward-sexp= (=C-M-f= and =C-M-b=):
@@ -620,9 +621,15 @@ Don't evaluate when exporting:
 
 *** Languages
 
-Golang support:
+Language support:
 #+begin_src emacs-lisp
 (use-package ob-go)
+(use-package ob-typescript) ; no syntactic coloration, need to somehow bind typescript-ts to it.
+
+(let ((file "~/git/ob-racket/ob-racket.el"))
+  (if (file-exists-p file)
+      (load-file file)
+    (message "Error: %s not found! Clone https://github.com/togakangaroo/ob-racket" file)))
 #+end_src
 
 Enable some languages:
@@ -643,6 +650,7 @@ Enable some languages:
    (java . t)
    (lua . t)
    (js . t)
+   (typescript . t)
    ;; (jupyter . t)
    (go . t)))
 #+end_src
@@ -664,9 +672,11 @@ Automatic evaluation:
         "perl"
         "scheme"
         "js"
+        "typescript"
         "jupyter-julia"
         "lua"
-        "go"))
+        "go"
+        "racket"))
 
 (defun my-org-confirm-babel-evaluate (lang body)
   (not (seq-contains my/babel-evaluate-without-asking
