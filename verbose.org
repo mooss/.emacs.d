@@ -70,7 +70,7 @@ for key, args in {
     # 'm':    'makefile',
     't':    'text',
     'o':    'org',
-    # 'gl':   'glsl',
+    'gl':   'glsl',
     # 'lua':  'lua',
     # 'x':    'xml',
     # 'll':   'llvm',
@@ -172,6 +172,8 @@ for key, args in {
 [[file:snippets/org-mode/literate-source-block-t-text:generated]]
 [[file:snippets/org-mode/source-block-o-org:generated]]
 [[file:snippets/org-mode/literate-source-block-o-org:generated]]
+[[file:snippets/org-mode/source-block-gl-glsl:generated]]
+[[file:snippets/org-mode/literate-source-block-gl-glsl:generated]]
 [[file:snippets/org-mode/source-block-js-js:generated]]
 [[file:snippets/org-mode/literate-source-block-js-js:generated]]
 [[file:snippets/org-mode/source-block-go-go:generated]]

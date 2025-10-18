@@ -333,7 +333,6 @@ Jump to references:
 #+end_src
 
 ** Programming languages
-
 *** Go
 
 #+begin_src emacs-lisp
@@ -359,6 +358,14 @@ Enable eglot with =js-mode=.
 #+begin_src emacs-lisp
 (add-hook 'js-mode-hook 'eglot-ensure)
 #+end_src
+
+*** GLSL
+
+#+begin_src emacs-lisp
+(use-package glsl-mode
+  :ensure t)
+#+end_src
+
 
 ** Markup/data languages
 *** Markdown

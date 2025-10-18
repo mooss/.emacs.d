@@ -16,7 +16,7 @@
      default))
  '(package-selected-packages
    '(all-the-icons color-identifiers-mode consult corfu diminish
-                   doom-modeline go-mode gptel helpful magit
+                   doom-modeline glsl-mode go-mode gptel helpful magit
                    marginalia markdown-mode monokai-theme ob-go
                    ob-typescript orderless org-bullets
                    persistent-scratch rg spacemacs-theme sudo-edit

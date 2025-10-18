@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: glsl (gl) source block
+# key: <gl
+# --
+#+begin_src glsl
+$0
+#+end_src
