@@ -723,8 +723,7 @@ Automatic evaluation:
 
 
 * AI
-** LLMs
-*** OpenRouter API key
+** OpenRouter API key
 
 Query the key with =pass= and keep it in memory:
 #+begin_src emacs-lisp
@@ -739,7 +738,7 @@ Query the key with =pass= and keep it in memory:
   eonwe-api-key)
 #+end_src
 
-*** Gptel
+** Gptel
 
 #+begin_src emacs-lisp
 (use-package gptel
@@ -749,39 +748,40 @@ Query the key with =pass= and keep it in memory:
   :config (setq gptel-default-mode 'org-mode))
 #+end_src
 
-**** Local with ollama
+*** Local with ollama
 
 #+begin_src emacs-lisp
-(gptel-make-ollama "Ollama"
-                 :host "localhost:11434"
-                 :stream nil
-                 :models '(deepseek-coder-v2:16b))
+;; (gptel-make-ollama "Ollama"
+;;                  :host "localhost:11434"
+;;                  :stream nil
+;;                  :models '(deepseek-coder-v2:16b))
 #+end_src
 
-**** OpenRouter
+*** OpenRouter
 
 #+begin_src emacs-lisp
 (setq
- gptel-model 'google/gemini-2.5-flash-preview-05-20
+ gptel-model 'moonshotai/kimi-k2-0905
  gptel-backend (gptel-make-openai "OpenRouter"
                  :host "openrouter.ai"
                  :endpoint "/api/v1/chat/completions"
                  :stream t
                  :key 'get-eonwe-api-key
-                 :models '(google/gemini-2.5-flash-preview-05-20 ; .6o
-                           anthropic/claude-opus-4 ; 75o
-                           anthropic/claude-sonnet-4 ; 15o
-                           deepseek/deepseek-r1-0528 ; 2.15o
-						   deepseek/deepseek-chat-v3-0324 ; .88o
-                           google/gemini-2.5-flash-preview-05-20:thinking ; 3.5o
-                           openai/gpt-4.1-nano ; .4o
-                           openai/gpt-4o-mini ; .6o
-                           openai/gpt-4.1-mini ; 1.6o
-                           openai/o4-mini ; 4.4o
+                 :models '(deepseek/deepseek-chat-v3.1
+                           deepseek/deepseek-chat-v3-0324
+                           qwen/qwen3-coder
+                           moonshotai/kimi-k2-0905
+                           openai/gpt-5-nano
+                           openai/gpt-5-mini
+                           z-ai/glm-4.6
+                           openai/gpt-5
+                           deepseek/deepseek-v3.2-speciale
+                           deepseek/deepseek-v3.2
+                           openai/gpt-oss-120b
                            )))
 #+end_src
 
-**** Custom prompts
+*** Custom prompts
 
 #+begin_src emacs-lisp
 (defun __gptel-test-writing ()
