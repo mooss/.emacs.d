@@ -87,8 +87,9 @@ Use org-mode for the scratch buffer:
 
 #+begin_src emacs-lisp
 ;; Better scrolling.
-(setq scroll-step 1                ; Scroll 1 line at a time.
-      scroll-conservatively 10000) ; Keep cursor on screen.
+(setq scroll-step 2                ; Scroll 1 line at a time.
+      scroll-conservatively 10000  ; Keep cursor on screen.
+      mouse-wheel-progressive-speed nil)
 
 ;; Hide line numbers.
 (setq line-number-mode nil)
@@ -119,7 +120,7 @@ Tabulation:
 ;; (use-package monokai-theme
 ;;   :config (load-theme 'monokai t))
 (use-package spacemacs-theme
-  :config (load-theme 'spacemacs-light))
+  :config (load-theme 'spacemacs-dark t))
 #+end_src
 
 ** Shortcuts
@@ -347,7 +348,7 @@ Jump to references:
   :bind ("C-c C-c" . #'my/go-format-and-organize))
 #+end_src
 
-*** JavaScript
+*** JavaScript / Typescript
 
 Installing the language server:
 #+begin_src bash :eval never
