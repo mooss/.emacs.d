@@ -752,6 +752,22 @@ Query the key with =pass= and keep it in memory:
   eonwe-api-key)
 #+end_src
 
+** Aidermacs
+
+#+begin_src emacs-lisp
+(use-package aidermacs
+  :bind (("C-c a" . aidermacs-transient-menu))
+  :config
+  ; defun my-get-openrouter-api-key yourself elsewhere for security reasons
+  (setenv "OPENROUTER_API_KEY" (get-eonwe-api-key))
+  :custom
+  ; See the Configuration section below
+  (aidermacs-default-chat-mode 'code)
+  (aidermacs-default-model "openrouter/deepseek/deepseek-v3.2")
+  (aidermacs-extra-args "--no-suggest-shell-commands"))
+#+end_src
+
+
 ** Gptel
 
 #+begin_src emacs-lisp
