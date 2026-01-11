@@ -427,6 +427,12 @@ Configure Rust support:
 (use-package yaml-mode)
 #+end_src
 
+*** justfile
+
+#+begin_src emacs-lisp
+(use-package just-mode)
+#+end_src
+
 
 * Completion
 
