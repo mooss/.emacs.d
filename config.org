@@ -380,6 +380,39 @@ Enable eglot with =js-mode=.
   :ensure t)
 #+end_src
 
+*** Rust
+
+Installing the language server:
+#+begin_src bash :eval never
+rustup component add rust-analyzer
+#+end_src
+
+Configure Rust support:
+#+begin_src emacs-lisp
+(use-package rust-mode
+  :ensure t
+  :hook (rust-mode . eglot-ensure)
+  :config
+  (setq rust-format-on-save t)
+
+  (defun my/rust-format-and-organize ()
+    "Format buffer and optionally organize imports for Rust."
+    (interactive)
+    (eglot-format-buffer)
+    ;; rust-analyzer doesn't have organize-imports as a built-in code action
+    ;; but we can still trigger other useful actions
+    (when (fboundp 'eglot-code-actions)
+      (eglot-code-actions nil nil "source.organizeImports")))
+
+  :bind (:map rust-mode-map
+              ("C-c C-c" . #'my/rust-format-and-organize)
+              ("C-c C-t" . #'rust-test)))
+
+(use-package cargo
+  :ensure t
+  :hook (rust-mode . cargo-minor-mode))
+#+end_src
+
 
 ** Markup/data languages
 *** Markdown

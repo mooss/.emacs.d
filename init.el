@@ -15,13 +15,13 @@
      "aa545934ce1b6fd16b4db2cf6c2ccf126249a66712786dd70f880806a187ac0b"
      default))
  '(package-selected-packages
-   '(all-the-icons color-identifiers-mode consult corfu diminish
-                   doom-modeline flymake-eslint glsl-mode go-mode
-                   gptel helpful magit marginalia markdown-mode
-                   monokai-theme ob-go ob-typescript orderless
-                   org-bullets persistent-scratch rg spacemacs-theme
-                   sudo-edit tree-sitter treemacs undo-tree vertico
-                   yaml-mode yasnippet))
+   '(aidermacs all-the-icons cargo color-identifiers-mode consult corfu
+               diminish doom-modeline flymake-eslint glsl-mode go-mode
+               gptel helpful magit marginalia markdown-mode
+               monokai-theme ob-go ob-typescript orderless org-bullets
+               persistent-scratch rg rust-mode spacemacs-theme
+               sudo-edit tree-sitter treemacs undo-tree vertico
+               yaml-mode yasnippet))
  '(package-vc-selected-packages '((ob-go :url "https://github.com/mooss/ob-go"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
