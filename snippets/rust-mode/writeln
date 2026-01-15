@@ -1,0 +1,4 @@
+# name: writeln!
+# key: !wl
+# --
+writeln!($1, "$2");
