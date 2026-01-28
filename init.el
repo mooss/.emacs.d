@@ -17,11 +17,10 @@
  '(package-selected-packages
    '(aidermacs all-the-icons cargo color-identifiers-mode consult corfu
                diminish doom-modeline flymake-eslint glsl-mode go-mode
-               gptel helpful magit marginalia markdown-mode
-               monokai-theme ob-go ob-typescript orderless org-bullets
-               persistent-scratch rg rust-mode spacemacs-theme
-               sudo-edit tree-sitter treemacs undo-tree vertico
-               yaml-mode yasnippet))
+               gptel helpful just-mode magit marginalia ob-go
+               ob-typescript orderless org-bullets persistent-scratch
+               rg rust-mode spacemacs-theme sudo-edit tree-sitter
+               treemacs undo-tree vertico yaml-mode yasnippet))
  '(package-vc-selected-packages '((ob-go :url "https://github.com/mooss/ob-go"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
