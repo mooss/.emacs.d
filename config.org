@@ -51,10 +51,10 @@ Use org-mode for the scratch buffer:
 
 ** Path
 
-#+begin_src elisp
-;; Add ~/.local/bin to the exec-path that Emacs uses to locate binaries.
-(add-to-list 'exec-path (expand-file-name "~/.local/bin"))
-;; Also pass it to any child processes so they inherit the same PATH.
+#+begin_src emacs-lisp
+;; Add important paths to the exec-path that Emacs uses to locate binaries.
+(mapc (lambda (d) (add-to-list 'exec-path (expand-file-name d))) '("~/.local/bin" "~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/"))
+;; Also pass them to any child processes so they inherit the same PATH.
 ;(setenv "PATH" (concat (expand-file-name "~/.local/bin") path-separator (getenv "PATH")))
 #+end_src
 
