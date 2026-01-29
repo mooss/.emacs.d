@@ -14,13 +14,7 @@
      "268ffd888ba4ffacb351b8860c8c1565b31613ecdd8908675d571855e270a12b"
      "aa545934ce1b6fd16b4db2cf6c2ccf126249a66712786dd70f880806a187ac0b"
      default))
- '(package-selected-packages
-   '(aidermacs all-the-icons cargo color-identifiers-mode consult corfu
-               diminish doom-modeline flymake-eslint glsl-mode go-mode
-               gptel helpful just-mode magit marginalia ob-go
-               ob-typescript orderless org-bullets persistent-scratch
-               rg rust-mode spacemacs-theme sudo-edit tree-sitter
-               treemacs undo-tree vertico yaml-mode yasnippet))
+ '(package-selected-packages nil)
  '(package-vc-selected-packages '((ob-go :url "https://github.com/mooss/ob-go"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

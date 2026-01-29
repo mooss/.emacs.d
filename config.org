@@ -389,25 +389,16 @@ rustup component add rust-analyzer
 
 Configure Rust support:
 #+begin_src emacs-lisp
-(use-package rust-mode
+(use-package rustic
   :ensure t
-  :hook (rust-mode . eglot-ensure)
   :config
-  (setq rust-format-on-save t)
+  (setq rustic-format-on-save t)
+  (setq rustic-format-on-save-method 'rustic-cargo-fmt)
+  :custom
+  (rustic-cargo-use-last-stored-arguments t)
+  (rustic-analyzer-command '("rustup" "run" "stable" "rust-analyzer")))
 
-  (defun my/rust-format-and-organize ()
-    "Format buffer and optionally organize imports for Rust."
-    (interactive)
-    (eglot-format-buffer)
-    ;; rust-analyzer doesn't have organize-imports as a built-in code action
-    ;; but we can still trigger other useful actions
-    (when (fboundp 'eglot-code-actions)
-      (eglot-code-actions nil nil "source.organizeImports")))
-
-  :bind (:map rust-mode-map
-              ("C-c C-c" . #'my/rust-format-and-organize)
-              ("C-c C-t" . #'rust-test)))
-
+(setq rustic-lsp-client 'eglot)
 (use-package cargo
   :ensure t
   :hook (rust-mode . cargo-minor-mode))
