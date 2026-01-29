@@ -404,6 +404,14 @@ Configure Rust support:
   :hook (rust-mode . cargo-minor-mode))
 #+end_src
 
+Fix insufferable behavior where Rust files ask if I want to save *when I explicitely asked to save*:
+#+begin_src emacs-lisp
+(defun my-rustic-save-some-buffers (&optional pred)
+  "Save all rustic buffers without asking."
+  (save-some-buffers (or pred t) nil))
+
+(advice-add 'rustic-save-some-buffers :override #'my-rustic-save-some-buffers)
+#+end_src
 
 ** Markup/data languages
 *** Markdown
