@@ -413,6 +413,37 @@ Fix insufferable behavior where Rust files ask if I want to save *when I explici
 (advice-add 'rustic-save-some-buffers :override #'my-rustic-save-some-buffers)
 #+end_src
 
+*** Python
+
+Install the language server with something like:
+ - =pip install pyright=
+ - =pacman -Sy pyright=
+
+Enable eglot with =python-mode=:
+#+begin_src emacs-lisp
+(use-package python
+  :ensure t
+  :hook ((python-mode . pyvenv-mode)
+         (python-mode . eglot-ensure))
+  :config
+  (defun my/python-format-and-organize ()
+    "Format buffer and organize imports for Python."
+    (interactive)
+    (eglot-format-buffer)
+    (call-interactively #'eglot-code-action-organize-imports))
+  :bind (:map python-mode-map ("C-c C-c" . my/python-format-and-organize)))
+
+(use-package pyvenv
+  :ensure t
+  :config
+  (defun my/pyvenv-restart-eglot ()
+    "Restart eglot to pick up the new Python environment."
+    (when (eglot-current-server)
+      (call-interactively #'eglot-reconnect)))
+  (add-hook 'pyvenv-post-activate-hooks #'my/pyvenv-restart-eglot)
+  (add-hook 'pyvenv-post-deactivate-hooks #'my/pyvenv-restart-eglot))
+#+end_src
+
 ** Markup/data languages
 *** Markdown
 
