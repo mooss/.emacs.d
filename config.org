@@ -505,7 +505,7 @@ Only a subset are bound here.
          ("C-x p b" . consult-project-buffer)      ;; orig. project-switch-to-buffer.
          ;; Other custom bindings
          ("M-y" . consult-yank-pop)                ;; orig. yank-pop.
-	 ("C-s" . consult-line)                    ;; orig. isearch.
+	     ("C-s" . consult-line)                    ;; orig. isearch.
          ;; M-g bindings in `goto-map'.
          ("M-g e" . consult-compile-error)
          ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck.
@@ -535,8 +535,7 @@ Only a subset are bound here.
   :init
   ;; Use Consult to select xref locations with preview.
   (setq xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref)
-)
+        xref-show-definitions-function #'consult-xref))
 #+end_src
 
 ** Orderless
@@ -558,11 +557,11 @@ In-buffer completion (e.g. variable names).
 (use-package corfu
   :custom
   (corfu-cycle t)  ;; Enable cycling for `corfu-next/previous'
-  (corfu-auto t)   ;; Automatically open the autocompletion menu.
+  (corfu-auto nil)   ;; Automatically open the autocompletion menu.
   ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
   ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
   ;; (corfu-preview-current nil)    ;; Disable current candidate preview
-  ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
+  (corfu-preselect 'first)      ;; Preselect the prompt
   ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
 
   :init
@@ -632,7 +631,6 @@ Stop the whining of =so-long=:
   (add-to-list 'so-long-mode-preserved-minor-modes 'magit-mode)
   (add-to-list 'so-long-target-modes 'magit-mode t))
 #+end_src
-
 
 ** Treemacs
 
