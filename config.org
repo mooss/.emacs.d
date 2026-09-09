@@ -222,6 +222,43 @@ From http://sodaware.sdf.org/notes/emacs-daemon-doom-modeline-icons/.
 (global-set-key (kbd "C-h F") #'helpful-function)
 #+end_src
 
+** Windows
+
+Version 31.1 completely broke splitting (it only seems to care about monitor proportion and not window proportion).
+This is barely a fix:
+#+begin_src emacs-lisp
+(defun my-split-window-by-shape (&optional window)
+  "Split WINDOW based on its proportions, ignoring split thresholds.
+
+If WINDOW is at least as tall as it is wide, split it vertically
+(the new window appears below); otherwise split it horizontally
+(the new window appears on the right).
+
+If the preferred direction isn't physically possible, fall back to
+the other direction.  Return the new window, or nil if WINDOW can't
+be split at all.
+
+Intended for use as `split-window-preferred-function'."
+  (setq window (or window (selected-window)))
+  (let ((split-below-p (>= (window-pixel-height window)
+                           (window-pixel-width window)))
+        ;; Ignore `split-height-threshold' / `split-width-threshold':
+        ;; shape alone should decide the direction.
+        (split-height-threshold 0)
+        (split-width-threshold 0))
+    (cond
+     ((and split-below-p (window-splittable-p window nil))
+      (split-window window nil 'below))
+     ((and (not split-below-p) (window-splittable-p window t))
+      (split-window window nil 'right))
+     ((window-splittable-p window nil)
+      (split-window window nil 'below))
+     ((window-splittable-p window t)
+      (split-window window nil 'right)))))
+
+(setopt split-window-preferred-function #'my-split-window-by-shape)
+#+end_src
+
 
 * Typing
 
