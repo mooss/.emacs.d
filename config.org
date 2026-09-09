@@ -862,13 +862,18 @@ Query the key with =pass= and keep it in memory:
 (use-package aidermacs
   :bind (("C-c a" . aidermacs-transient-menu))
   :config
-  ; defun my-get-openrouter-api-key yourself elsewhere for security reasons
   (setenv "OPENROUTER_API_KEY" (get-eonwe-api-key))
   :custom
-  ; See the Configuration section below
-  (aidermacs-default-chat-mode 'code)
-  (aidermacs-default-model "openrouter/deepseek/deepseek-v3.2")
-  (aidermacs-extra-args "--no-suggest-shell-commands"))
+  (aidermacs-default-model "openrouter/deepseek/deepseek-v4-flash-0731")
+  (aidermacs-default-chat-mode 'architect)
+  (aidermacs-extra-args '("--no-suggest-shell-commands")))
+#+end_src
+
+#+begin_src emacs-lisp
+(setq aidermacs-architect-model "openrouter/deepseek/deepseek-v4-flash-0731")
+;(setq aidermacs-editor-model "openrouter/openai/gpt-oss-120b")
+(setq aidermacs-editor-model "openrouter/deepseek/deepseek-v4-flash-0731")
+;(setq aidermacs-weak-model "openrouter/openai/gpt-oss-120b")
 #+end_src
 
 
@@ -895,23 +900,14 @@ Query the key with =pass= and keep it in memory:
 
 #+begin_src emacs-lisp
 (setq
- gptel-model 'moonshotai/kimi-k2-0905
+ gptel-model 'deepseek/deepseek-v4-flash-0731
  gptel-backend (gptel-make-openai "OpenRouter"
                  :host "openrouter.ai"
                  :endpoint "/api/v1/chat/completions"
                  :stream t
                  :key 'get-eonwe-api-key
-                 :models '(deepseek/deepseek-chat-v3.1
-                           deepseek/deepseek-chat-v3-0324
-                           qwen/qwen3-coder
-                           moonshotai/kimi-k2-0905
-                           openai/gpt-5-nano
-                           openai/gpt-5-mini
-                           z-ai/glm-4.6
-                           openai/gpt-5
-                           deepseek/deepseek-v3.2-speciale
-                           deepseek/deepseek-v3.2
-                           openai/gpt-oss-120b
+                 :models '(deepseek/deepseek-v4-flash-0731
+                           deepseek/deepseek-v4-pro-0813
                            )))
 #+end_src
 
