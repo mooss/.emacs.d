@@ -753,6 +753,11 @@ Make check boxes clickable:
 (require 'org-mouse)
 #+end_src
 
+American dates when inserting timestamps:
+#+begin_src emacs-lisp
+(setq system-time-locale "C")
+#+end_src
+
 ** Babel
 
 *** Behavior
